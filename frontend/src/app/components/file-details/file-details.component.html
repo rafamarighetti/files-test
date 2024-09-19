@@ -1,0 +1,76 @@
+@if (viewMode){
+  @if (currentFile.id){
+  <h4>Arquivo</h4>
+  <div>
+    <label><strong>Nome:</strong></label> {{ currentFile.title }}
+  </div>
+  <div>
+    <label><strong>Descrição:</strong></label>
+    {{ currentFile.description }}
+  </div>
+  <div>
+    <label><strong>Status:</strong></label>
+    {{ currentFile.published ? "Publicado" : "Pendente" }}
+  </div>
+
+  <a class="badge badge-warning" routerLink="/files/{{ currentFile.id }}">
+    Editar
+  </a>
+  } @else {<p>Selecione o item para mais informações...</p>}
+} @else {
+  @if (currentFile.id) {
+  <div class="edit-form">
+    <h4>Arquivo</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentFile.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentFile.description"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentFile.published ? "Publicado" : "Pendente" }}
+      </div>
+    </form>
+
+    @if (currentFile.published) {
+    <button class="badge badge-primary mr-2"
+      (click)="updatePublished(false)" >
+      Pendente
+    </button>
+    } @else {
+    <button class="badge badge-primary mr-2" (click)="updatePublished(true)">
+      Publicar
+    </button>
+    }
+
+    <button class="badge badge-danger mr-2" (click)="deleteFile()">
+      Excluir
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateFile()">
+      Atualizar
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  } @else {<p>Não é possível acessar o arquivo...</p>}
+}

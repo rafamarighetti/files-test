@@ -1,0 +1,33 @@
+<div>
+  <div class="submit-form">
+    @if (!submitted) {
+    <div class="form-group">
+      <label for="title">Nome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        [(ngModel)]="file.title"
+        name="title"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <input
+        class="form-control"
+        id="description"
+        required
+        [(ngModel)]="file.description"
+        name="description"
+      />
+    </div>
+
+    <button (click)="saveFile()" class="btn btn-success">Cadastrar</button>
+    } @else {
+    <h4>Item cadastrado com sucesso!</h4>
+    <button class="btn btn-success" (click)="newFile()">Adicionar</button>
+    }
+  </div>
+</div>

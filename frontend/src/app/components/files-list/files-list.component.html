@@ -1,0 +1,45 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Pesquisar pelo nome do arquivo"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Pesquisar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Itens cadastrados</h4>
+    <ul class="list-group">
+      @for (file of files; track file.id; let i = $index) {
+      <li
+        class="list-group-item"
+        [class.active]="i == currentIndex"
+        (click)="setActiveFile(file, i)"
+      >
+        {{ file.title }}
+      </li>
+      }
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllFiles()">
+      Excluir Todos
+    </button>
+  </div>
+  <div class="col-md-6">
+    <app-file-details
+      [viewMode]="true"
+      [currentFile]="currentFile"
+    ></app-file-details>
+  </div>
+</div>
