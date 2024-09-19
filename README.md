@@ -42,5 +42,5 @@ npm install
 
 ## Executar a aplicação 
 ```
-ng serve --port 8081
+ng serve
 ```
